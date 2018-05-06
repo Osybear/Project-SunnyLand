@@ -2823,7 +2823,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ItemSpeed: -4
-  m_ItemSpawnRate: 3
+  m_ItemSpawnRate: 7.5
+  m_SpikeSpawnRate: 3
   m_PlayerCherries: 3
   m_PlayerGems: 0
   m_GemCount: {fileID: 73050346}
@@ -2862,17 +2863,12 @@ MonoBehaviour:
   - {fileID: 646078920}
   - {fileID: 1218232675}
   - {fileID: 245241747}
-  m_ItemPrefabs:
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829, type: 2}
-  - {fileID: 1191672706707392, guid: f6bc23b62f167c04a811e0fccd5f4ddc, type: 2}
-  - {fileID: 1191672706707392, guid: f6bc23b62f167c04a811e0fccd5f4ddc, type: 2}
+  m_CherryPrefab: {fileID: 1976539292029650, guid: f0966647ac40d524a979fb7dee876d5d,
+    type: 2}
+  m_GemPrefab: {fileID: 1191672706707392, guid: f6bc23b62f167c04a811e0fccd5f4ddc,
+    type: 2}
+  m_SpikePrefab: {fileID: 1938533779430234, guid: f3c8e1126561e2049a850044b5d33829,
+    type: 2}
 --- !u!1 &1546465803
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager m_GameManager;
 	public float m_ItemSpeed = -4;
 	public float m_ItemSpawnRate = 3;
+	public float m_SpikeSpawnRate = 3;
 	public int m_PlayerCherries = 3; // health
 	public int m_PlayerGems = 0;
 	public Text m_GemCount;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	public void AddCherry(){
+		m_CherryIndicators[m_PlayerCherries].color = new Color(1, 1, 1);
 		m_PlayerCherries++;
 	}
 
