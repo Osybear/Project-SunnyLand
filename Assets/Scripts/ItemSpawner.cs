@@ -17,7 +17,7 @@ public class ItemSpawner : MonoBehaviour {
 			int itemprefabindex = Random.Range(0, m_ItemPrefabs.Count);
 
 			Instantiate(m_ItemPrefabs[itemprefabindex], m_SpawnPoints[spawnpointindex].transform.position, m_ItemPrefabs[itemprefabindex].transform.rotation);
-			yield return new WaitForSeconds(GameManager.m_ItemSpawnRate);
+			yield return new WaitForSeconds(GameManager.m_GameManager.m_ItemSpawnRate);
 		}
 	}
 }

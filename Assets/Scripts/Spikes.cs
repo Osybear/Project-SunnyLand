@@ -7,7 +7,7 @@ public class Spikes : MonoBehaviour {
 	private float m_ItemSpeed;
 
 	private void Start() {
-		m_ItemSpeed = GameManager.m_ItemSpeed;
+		m_ItemSpeed = GameManager.m_GameManager.m_ItemSpeed;
 	}
 
 	private void Update() {
@@ -19,8 +19,10 @@ public class Spikes : MonoBehaviour {
 		GetComponent<Collider2D>().enabled = false;
 		GetComponent<Animator>().SetTrigger("Collided");
 
-		if(other.tag == "Player")
-			other.GetComponent<Animator>().SetTrigger("Damaged");
+		if(other.tag == "Player"){
+			other.GetComponent<Animator>().SetTrigger("DamagedTrigger");
+			GameManager.m_GameManager.RemoveCherry();
+		}
 	}
 
 	public void Deactivate(){

@@ -7,7 +7,7 @@ public class Cherry : MonoBehaviour {
 	private float m_ItemSpeed;
 
 	private void Start() {
-		m_ItemSpeed = GameManager.m_ItemSpeed;
+		m_ItemSpeed = GameManager.m_GameManager.m_ItemSpeed;
 	}
 
 	private void Update() {
@@ -18,7 +18,7 @@ public class Cherry : MonoBehaviour {
 		if(other.tag == "Player"){
 			GetComponent<Collider2D>().enabled = false;
 			GetComponent<Animator>().SetTrigger("Collect");
-			GameManager.m_PlayerCherries++;	
+			GameManager.m_GameManager.AddCherry();
 			m_ItemSpeed = 0;
 		}
 

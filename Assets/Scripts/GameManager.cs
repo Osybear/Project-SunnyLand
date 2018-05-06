@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public static float m_ItemSpeed;
-	public static float m_ItemSpawnRate;
-	public static int m_PlayerCherries; // health
-	public static int m_PlayerGems;
-	
+	public static GameManager m_GameManager;
+	public float m_ItemSpeed = -4;
+	public float m_ItemSpawnRate = 3;
+	public int m_PlayerCherries = 3; // health
+	public int m_PlayerGems = 0;
+	public Text m_GemCount;
+	public List<SpriteRenderer> m_CherryIndicators;
+
 	private void Awake() {
-		m_PlayerCherries = 3;
-		m_PlayerGems = 0;
-		m_ItemSpeed = -4;
-		m_ItemSpawnRate = 3;
+		if(m_GameManager != null)
+             GameObject.Destroy(m_GameManager);
+         else
+             m_GameManager = this;
 	}
 
 	private void Start() {
@@ -27,5 +31,24 @@ public class GameManager : MonoBehaviour {
 
 	private void DecreaseItemSpawnRate(){
 		m_ItemSpawnRate -= .05f;
+	}
+	
+	public void AddCherry(){
+		m_PlayerCherries++;
+	}
+
+	public void RemoveCherry(){
+		m_PlayerCherries--;
+		m_CherryIndicators[m_PlayerCherries].color = new Color(0.5f, 0.5f, 0.5f);
+	}
+
+	public void AddGem(){
+		m_PlayerGems++;
+		if(m_PlayerGems < 10)
+			m_GemCount.text = "00" + m_PlayerGems;
+		else if(m_PlayerGems >= 10 && m_PlayerGems < 100)
+			m_GemCount.text = "0" + m_PlayerGems;
+		else if(m_PlayerGems >= 100)
+			m_GemCount.text = "" + m_PlayerGems;
 	}
 }
