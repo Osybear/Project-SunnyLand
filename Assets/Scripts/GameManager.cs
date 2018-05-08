@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
 	public static GameManager m_GameManager;
 	public float m_ItemSpeed = -4;
 	public float m_ItemSpawnRate = 3;
+
+	public float m_SpikeSpeed = -4;
 	public float m_SpikeSpawnRate = 3;
+	public float m_SpikeSpeedIncreaseRate = .1f;
+
 	public int m_PlayerCherries = 3; // health
 	public int m_PlayerGems = 0;
+
 	public Text m_GemCount;
-	public List<SpriteRenderer> m_CherryIndicators;
+	public List<Image> m_CherryIndicators;
 
 	private void Awake() {
 		if(m_GameManager != null)
@@ -22,15 +28,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void Start() {
-		InvokeRepeating("IncreaseItemSpeed", 0, 1);
-		//InvokeRepeating("DecreaseItemSpawnRate", 0, 1);
+		InvokeRepeating("IncreaseSpikeSpeed", 0, 1);
+		//InvokeRepeating("IncreaseItemSpawnRate", 0, 1);
 	}
 
-	private void IncreaseItemSpeed(){
-		m_ItemSpeed -= .05f;
+	private void IncreaseSpikeSpeed(){
+		m_SpikeSpeed -= m_SpikeSpeedIncreaseRate;
 	}
 
-	private void DecreaseItemSpawnRate(){
+	private void IncreaseItemSpawnRate(){
 		m_ItemSpawnRate -= .05f;
 	}
 	
@@ -41,6 +47,10 @@ public class GameManager : MonoBehaviour {
 
 	public void RemoveCherry(){
 		m_PlayerCherries--;
+		if(m_PlayerCherries == -1){
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			return;
+		}
 		m_CherryIndicators[m_PlayerCherries].color = new Color(0.5f, 0.5f, 0.5f);
 	}
 

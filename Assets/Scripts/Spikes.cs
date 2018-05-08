@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour {
 
-	private float m_ItemSpeed;
+	private float m_Speed;
 
 	private void Start() {
-		m_ItemSpeed = GameManager.m_GameManager.m_ItemSpeed;
+		m_Speed = GameManager.m_GameManager.m_SpikeSpeed;
 	}
 
 	private void Update() {
-		transform.Translate(new Vector3(0, m_ItemSpeed * Time.deltaTime, 0), Space.World);
+		transform.Translate(new Vector3(0, m_Speed * Time.deltaTime, 0), Space.World);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		m_ItemSpeed = 0;
+		m_Speed = 0;
 		GetComponent<Collider2D>().enabled = false;
 		GetComponent<Animator>().SetTrigger("Collided");
 
