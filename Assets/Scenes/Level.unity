@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 311559588}
   - component: {fileID: 311559587}
   - component: {fileID: 311559586}
+  - component: {fileID: 311559590}
   - component: {fileID: 311559585}
   - component: {fileID: 311559584}
   - component: {fileID: 311559589}
@@ -569,6 +570,21 @@ MonoBehaviour:
   m_MovementSpeed: 6
   m_JumpForce: 10
   m_isGrounded: 1
+--- !u!58 &311559590
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 311559583}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &344566819
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,6 +5155,7 @@ MonoBehaviour:
   m_PlayerCherries: 3
   m_PlayerGems: 0
   m_Killed: 0
+  m_hasStarted: 0
   m_GemCount: {fileID: 73050346}
   m_PressEnter: {fileID: 27710272}
   m_TwinkleRate: 0.85

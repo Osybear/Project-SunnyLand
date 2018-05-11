@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 	public int m_PlayerGems = 0;
 
 	public bool m_Killed = false;
+	public bool m_hasStarted = false;
 
 	public Text m_GemCount;
 	public Text m_PressEnter;
@@ -32,27 +33,24 @@ public class GameManager : MonoBehaviour {
              GameObject.Destroy(m_GameManager);
          else
              m_GameManager = this;
-
-		m_PressEnter.enabled = false;
 	}
 
 	private void Start() {
-		InvokeRepeating("IncreaseSpikeSpeed", 0, 1);
-		StartCoroutine(m_ItemSpawner.SpawnSpike());
-		StartCoroutine(m_ItemSpawner.SpawnItem());
+		StartCoroutine(TextTwinkle());
 	}
 
 	private void Update() {
+		if(m_hasStarted == false && Input.GetKeyDown(KeyCode.Return)){
+			StartGame();
+		}
+
 		if(m_Killed && Input.GetKeyDown(KeyCode.Return)){
-			SceneManager.LoadScene("Level");
+			RestartGame();
 		}
 	}
+
 	private void IncreaseSpikeSpeed(){
 		m_SpikeSpeed -= m_SpikeSpeedIncreaseRate;
-	}
-
-	private void IncreaseItemSpawnRate(){
-		m_ItemSpawnRate -= .05f;
 	}
 	
 	public void AddCherry(){
@@ -64,6 +62,7 @@ public class GameManager : MonoBehaviour {
 		m_PlayerCherries--;
 		if(m_PlayerCherries == -1){
 			m_PressEnter.enabled = true;
+			CancelInvoke();
 			StopAllCoroutines();
 			StartCoroutine(TextTwinkle());
 			m_Player.GetComponent<Animator>().SetBool("Killed", true);
@@ -90,5 +89,29 @@ public class GameManager : MonoBehaviour {
 			yield return new WaitForSeconds(m_TwinkleRate);
 			m_PressEnter.color = new Color(m_PressEnter.color.r, m_PressEnter.color.g, m_PressEnter.color.b, 1);
 		}
+	}
+
+	public void StartGame(){
+			StopAllCoroutines();
+			m_PressEnter.enabled = false;
+			InvokeRepeating("IncreaseSpikeSpeed", 0, 1);
+			StartCoroutine(m_ItemSpawner.SpawnSpike());
+			StartCoroutine(m_ItemSpawner.SpawnItem());
+			m_hasStarted = true;
+	}
+
+	public void RestartGame(){
+		//SceneManager.LoadScene("Level");
+		m_Killed = false;
+		m_Player.GetComponent<Animator>().SetBool("Killed", false);
+		m_Player.GetComponent<Animator>().SetTrigger("Restart");
+		m_PlayerGems = 0;
+		m_GemCount.text = "000";
+		for(int i = 0; i < m_CherryIndicators.Count; i++){
+			m_CherryIndicators[i].color = new Color(1, 1, 1);
+		}
+		m_PlayerCherries = 3;
+		m_SpikeSpeed = -4;
+		m_hasStarted = false;
 	}
 }

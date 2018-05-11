@@ -35,13 +35,13 @@ public class PlayerController : MonoBehaviour {
 		m_Animator.SetInteger("Run", Mathf.Abs((int)moveHorizontal));
 	}
 
-	private void OnCollisionExit2D(Collision2D other) {
-		m_Animator.SetBool("Grounded", false);
-		m_isGrounded = false;
-	}
-
-	private void OnCollisionStay2D(Collision2D other) {
+	private void OnTriggerEnter2D(Collider2D other) {
 		m_Animator.SetBool("Grounded", true);
 		m_isGrounded = true;
+	}
+
+	private void OnTriggerExit2D(Collider2D other) {
+		m_Animator.SetBool("Grounded", false);
+		m_isGrounded = false;
 	}
 }
