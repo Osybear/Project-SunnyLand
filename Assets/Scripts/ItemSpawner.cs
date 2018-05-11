@@ -9,12 +9,7 @@ public class ItemSpawner : MonoBehaviour {
 	public GameObject m_GemPrefab;
 	public GameObject m_SpikePrefab;
 
-	private void Start() {
-		StartCoroutine(SpawnSpike());
-		StartCoroutine(SpawnItem());
-	}
-
-	private IEnumerator SpawnSpike(){
+	public IEnumerator SpawnSpike(){
 		while(true){
 			int spawnpointindex = Random.Range(0, m_SpawnPoints.Count);
 
@@ -23,7 +18,7 @@ public class ItemSpawner : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator SpawnItem(){
+	public IEnumerator SpawnItem(){
 		while(true){
 			yield return new WaitForSeconds(GameManager.m_GameManager.m_ItemSpawnRate);
 			int spawnpointindex1 = Random.Range(0, m_SpawnPoints.Count);

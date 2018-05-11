@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void Update() {
-
 		float moveHorizontal = Input.GetAxisRaw("Horizontal");
 		Vector2 movement = new Vector2(moveHorizontal * m_MovementSpeed, m_RigidBody.velocity.y);
 		m_RigidBody.velocity = movement;
@@ -37,10 +36,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void OnCollisionExit2D(Collision2D other) {
+		m_Animator.SetBool("Grounded", false);
 		m_isGrounded = false;
 	}
 
 	private void OnCollisionStay2D(Collision2D other) {
+		m_Animator.SetBool("Grounded", true);
 		m_isGrounded = true;
 	}
 }
