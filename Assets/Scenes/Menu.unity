@@ -3974,9 +3974,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Survive as long as possible.
-
-    Collect as many gems as possible.'
+  m_Text: Dodge the spikes to survive as long as possible.
 --- !u!222 &2135377893
 CanvasRenderer:
   m_ObjectHideFlags: 0
