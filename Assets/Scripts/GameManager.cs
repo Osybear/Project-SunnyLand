@@ -101,16 +101,18 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StopGame(){
+		m_PressEnter.color = new Color(m_PressEnter.color.r, m_PressEnter.color.g, m_PressEnter.color.b, 1);
 		m_PressEnter.enabled = true;
 		CancelInvoke();
 		StopAllCoroutines();
 		StartCoroutine(TextTwinkle());
 		m_Player.GetComponent<Animator>().SetBool("Killed", true);
 		m_Killed = true;
-		m_PressEnter.text = "You Survived " + m_ElapsedTime + " seconds" + "\nPress Enter";
+		m_PressEnter.text = "You Survived " + m_ElapsedTime + " seconds" + "\nPress Enter" + "\nTo Restart";
 	}
 
 	public void RestartGame(){
+		m_PressEnter.text = "Press Enter";
 		m_Killed = false;
 		m_Player.GetComponent<Animator>().SetBool("Killed", false);
 		m_Player.GetComponent<Animator>().SetTrigger("Restart");
@@ -121,8 +123,9 @@ public class GameManager : MonoBehaviour {
 		}
 		m_PlayerCherries = 3;
 		m_SpikeSpeed = -4;
-		m_hasStarted = false;
+		//m_hasStarted = false;
 		m_ElapsedTime = 0;
+		StartGame();
 	}
 
 	public void Timer(){
