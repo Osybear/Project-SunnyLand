@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour {
 	public bool m_Killed = false;
 	public bool m_hasStarted = false;
 
+	public int m_ElapsedTime;
+
 	public Text m_GemCount;
 	public Text m_PressEnter;
 	public float m_TwinkleRate;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour {
              GameObject.Destroy(m_GameManager);
          else
              m_GameManager = this;
+		
+		m_PressEnter.text = "Press Enter" +"\nTo Start";
 	}
 
 	private void Start() {
@@ -61,12 +65,7 @@ public class GameManager : MonoBehaviour {
 	public void RemoveCherry(){
 		m_PlayerCherries--;
 		if(m_PlayerCherries == -1){
-			m_PressEnter.enabled = true;
-			CancelInvoke();
-			StopAllCoroutines();
-			StartCoroutine(TextTwinkle());
-			m_Player.GetComponent<Animator>().SetBool("Killed", true);
-			m_Killed = true;
+			StopGame();
 			return;
 		}
 		m_CherryIndicators[m_PlayerCherries].color = new Color(0.5f, 0.5f, 0.5f);
@@ -98,10 +97,20 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine(m_ItemSpawner.SpawnSpike());
 			StartCoroutine(m_ItemSpawner.SpawnItem());
 			m_hasStarted = true;
+			InvokeRepeating("Timer", 1, 1);
+	}
+
+	public void StopGame(){
+		m_PressEnter.enabled = true;
+		CancelInvoke();
+		StopAllCoroutines();
+		StartCoroutine(TextTwinkle());
+		m_Player.GetComponent<Animator>().SetBool("Killed", true);
+		m_Killed = true;
+		m_PressEnter.text = "You Survived " + m_ElapsedTime + " seconds" + "\nPress Enter";
 	}
 
 	public void RestartGame(){
-		//SceneManager.LoadScene("Level");
 		m_Killed = false;
 		m_Player.GetComponent<Animator>().SetBool("Killed", false);
 		m_Player.GetComponent<Animator>().SetTrigger("Restart");
@@ -113,5 +122,11 @@ public class GameManager : MonoBehaviour {
 		m_PlayerCherries = 3;
 		m_SpikeSpeed = -4;
 		m_hasStarted = false;
+		m_ElapsedTime = 0;
+	}
+
+	public void Timer(){
+		//in seconds
+		m_ElapsedTime++;
 	}
 }

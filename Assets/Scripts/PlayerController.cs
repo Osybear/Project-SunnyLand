@@ -36,12 +36,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		m_Animator.SetBool("Grounded", true);
-		m_isGrounded = true;
+		if(other.name == "Collidable"){
+			m_Animator.SetBool("Grounded", true);
+			m_isGrounded = true;
+		}
 	}
 
 	private void OnTriggerExit2D(Collider2D other) {
-		m_Animator.SetBool("Grounded", false);
-		m_isGrounded = false;
+		if(other.name == "Collidable"){
+			m_Animator.SetBool("Grounded", false);
+			m_isGrounded = false;
+		}
 	}
 }
