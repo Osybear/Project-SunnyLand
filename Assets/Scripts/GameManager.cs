@@ -51,12 +51,19 @@ public class GameManager : MonoBehaviour {
 		if(m_Killed && Input.GetKeyDown(KeyCode.Return)){
 			RestartGame();
 		}
+
+		if(m_ElapsedTime == 10)
+			m_SpikeSpawnRate = 2;
+		if(m_ElapsedTime == 30)
+			m_SpikeSpawnRate = 1;
+		if(m_ElapsedTime == 60)
+			m_SpikeSpawnRate = .5f;
 	}
 
 	private void IncreaseSpikeSpeed(){
 		m_SpikeSpeed -= m_SpikeSpeedIncreaseRate;
 	}
-	
+
 	public void AddCherry(){
 		m_CherryIndicators[m_PlayerCherries].color = new Color(1, 1, 1);
 		m_PlayerCherries++;
@@ -125,6 +132,7 @@ public class GameManager : MonoBehaviour {
 		m_SpikeSpeed = -4;
 		//m_hasStarted = false;
 		m_ElapsedTime = 0;
+		m_SpikeSpawnRate = 3;
 		StartGame();
 	}
 

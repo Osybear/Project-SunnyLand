@@ -5152,6 +5152,7 @@ MonoBehaviour:
   m_SpikeSpeed: -4
   m_SpikeSpawnRate: 3
   m_SpikeSpeedIncreaseRate: 0.1
+  m_SpikeSpawnIncreaseRate: 0.05
   m_PlayerCherries: 3
   m_PlayerGems: 0
   m_Killed: 0
