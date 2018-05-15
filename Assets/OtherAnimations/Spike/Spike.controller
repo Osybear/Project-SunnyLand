@@ -8,7 +8,7 @@ AnimatorController:
   m_Name: Spike
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Destroy
+  - m_Name: Collided
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -56,7 +56,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Destroy
+    m_ConditionEvent: Collided
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102564219860954896}
@@ -78,7 +78,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DestroyEvent
+  m_Name: Deactivate
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -103,7 +103,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Explode
+  m_Name: EnemyDeath
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -129,7 +129,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: None
+  m_Name: Empty
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -159,13 +159,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102564219860954896}
-    m_Position: {x: 276, y: 180, z: 0}
+    m_Position: {x: 312, y: 216, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102599197522056036}
-    m_Position: {x: 276, y: 108, z: 0}
+    m_Position: {x: 276, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102424722819941344}
-    m_Position: {x: 528, y: 180, z: 0}
+    m_Position: {x: 598.25, y: 181, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

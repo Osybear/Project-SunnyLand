@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour {
+public class Spikes : MonoBehaviour {
 
 	private float m_Speed;
 
+	private void Start() {
+		m_Speed = GameManager.m_GameManager.m_SpikeSpeed;
+	}
+
 	private void Update() {
 		transform.Translate(new Vector3(0, m_Speed * Time.deltaTime, 0), Space.World);
-		if(GameManager.singleton.m_Killed){
+		if(GameManager.m_GameManager.m_Killed){
 			GetComponent<Collider2D>().enabled = false;
-			GetComponent<Animator>().SetTrigger("Destroy");
+			GetComponent<Animator>().SetTrigger("Collided");
 			m_Speed = 0;
 		}
 	}
@@ -18,19 +22,15 @@ public class Spike : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		m_Speed = 0;
 		GetComponent<Collider2D>().enabled = false;
-		GetComponent<Animator>().SetTrigger("Destroy");
+		GetComponent<Animator>().SetTrigger("Collided");
 
 		if(other.tag == "Player"){
-			other.GetComponent<Animator>().SetTrigger("Damage");
-			GameManager.singleton.RemoveCherry();
+			other.GetComponent<Animator>().SetTrigger("DamagedTrigger");
+			GameManager.m_GameManager.RemoveCherry();
 		}
 	}
 
-	public void Destroy(){
+	public void Deactivate(){
 		Destroy(gameObject);
-	}
-
-	public void SetSpeed(float Speed){
-		m_Speed = Speed;
 	}
 }
