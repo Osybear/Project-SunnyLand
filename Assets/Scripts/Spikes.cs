@@ -25,7 +25,7 @@ public class Spikes : MonoBehaviour {
 		GetComponent<Animator>().SetTrigger("Collided");
 
 		if(other.tag == "Player"){
-			other.GetComponent<Animator>().SetTrigger("DamagedTrigger");
+			other.GetComponent<Animator>().SetTrigger("Damaged");
 			GameManager.m_GameManager.RemoveCherry();
 		}
 	}

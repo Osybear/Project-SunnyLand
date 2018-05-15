@@ -122,7 +122,6 @@ public class GameManager : MonoBehaviour {
 		m_PressEnter.text = "Press Enter";
 		m_Killed = false;
 		m_Player.GetComponent<Animator>().SetBool("Killed", false);
-		m_Player.GetComponent<Animator>().SetTrigger("Restart");
 		m_PlayerGems = 0;
 		m_GemCount.text = "000";
 		for(int i = 0; i < m_CherryIndicators.Count; i++){
@@ -130,14 +129,12 @@ public class GameManager : MonoBehaviour {
 		}
 		m_PlayerCherries = 3;
 		m_SpikeSpeed = -4;
-		//m_hasStarted = false;
 		m_ElapsedTime = 0;
 		m_SpikeSpawnRate = 3;
 		StartGame();
 	}
 
 	public void Timer(){
-		//in seconds
 		m_ElapsedTime++;
 	}
 }
