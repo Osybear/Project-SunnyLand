@@ -23,8 +23,10 @@ public class PlayerController : MonoBehaviour {
 		Vector2 movement = new Vector2(moveHorizontal * m_MovementSpeed, m_RigidBody.velocity.y);
 		m_RigidBody.velocity = movement;
 
-		if(Input.GetKeyDown(KeyCode.Space) && m_isGrounded == true)
+		if(Input.GetKeyDown(KeyCode.Space) && m_isGrounded == true){
 			m_RigidBody.velocity = new Vector2(movement.x, m_JumpForce);
+			SoundManager.singleton.PlayAudio("JumpArcade");
+		}
 
 		if(moveHorizontal < 0)
 			m_Renderer.flipX = true;

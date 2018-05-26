@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public static GameManager m_GameManager;
+	public static GameManager singleton;
 	public ItemSpawner m_ItemSpawner;
 
 	public float m_ItemSpeed = -4;
@@ -31,10 +31,10 @@ public class GameManager : MonoBehaviour {
 	public GameObject m_Player;
 
 	private void Awake() {
-		if(m_GameManager != null)
-             GameObject.Destroy(m_GameManager);
+		if(singleton != null)
+             GameObject.Destroy(singleton);
          else
-             m_GameManager = this;
+             singleton = this;
 		
 		m_PressEnter.text = "Press Enter" +"\nTo Start";
 	}
